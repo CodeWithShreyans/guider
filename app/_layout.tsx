@@ -1,37 +1,84 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import "@/global.css";
+import "expo-dev-client";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemeProvider } from "@react-navigation/native";
+import { Stack } from "expo-router";
+import * as React from "react";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useEffect } from "react";
+import { registerBackgroundFetchAsync } from "./background-fetch";
+import { getRegisteredTasksAsync } from "expo-task-manager";
+import { StatusBar } from "expo-status-bar";
+
+import { useColorScheme, useInitialAndroidBarSync } from "@/lib/useColorScheme";
+import { NAV_THEME } from "@/theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import deepEqual from "deep-equal";
+
+export {
+    // Catch any errors thrown by the Layout component.
+    ErrorBoundary,
+} from "expo-router";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+    useInitialAndroidBarSync();
+    const { colorScheme, isDarkColorScheme } = useColorScheme();
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    useEffect(() => {
+        registerBackgroundFetchAsync().then(() => {
+            getRegisteredTasksAsync().then((tasks) =>
+                console.log("tasks", tasks)
+            );
+        });
 
-  if (!loaded) {
-    return null;
-  }
+        (async () => {
+            const BASE_URL =
+                "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev";
+            AsyncStorage.setItem("lastFetch", new Date().toISOString());
+            const newIndex = await (
+                await fetch(`${BASE_URL}/index.json`)
+            ).json();
+            const storedIndex = await AsyncStorage.getItem("guideIndex");
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
+            console.log(deepEqual(newIndex, JSON.parse(storedIndex as string)));
+            if (storedIndex && deepEqual(newIndex, JSON.parse(storedIndex))) {
+                return;
+            }
+
+            await AsyncStorage.setItem("guideIndex", JSON.stringify(newIndex));
+
+            for (const i of newIndex) {
+                const guide = await (
+                    await fetch(`${BASE_URL}/${i.slug}.json`)
+                ).json();
+                await AsyncStorage.setItem(guide.slug, JSON.stringify(guide));
+            }
+        })();
+    }, []);
+
+    return (
+        <SafeAreaProvider>
+            <StatusBar
+                key={`root-status-bar-${isDarkColorScheme ? "light" : "dark"}`}
+                style={isDarkColorScheme ? "light" : "dark"}
+            />
+            <ThemeProvider value={NAV_THEME[colorScheme]}>
+                <Stack>
+                    <Stack.Screen
+                        name="index"
+                        options={{
+                            headerShown: false,
+                            title: "Home",
+                        }}
+                    />
+                    <Stack.Screen
+                        name="guide/[slug]"
+                        options={{ title: "Guide" }}
+                    />
+                    <Stack.Screen name="+not-found" />
+                </Stack>
+            </ThemeProvider>
+        </SafeAreaProvider>
+    );
 }

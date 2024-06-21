@@ -1,0 +1,76 @@
+{
+    "title": "How to Change a Bulb",
+    "slug": "change-bulb",
+    "image": "https://images.unsplash.com/photo-1572401611152-cf63d874b019?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyJTIwb24lMjB0aGUlMjByb2FkfGVufDB8fDB8fHww",
+    "steps": [
+        {
+            "title": "Find a Safe Location",
+            "description": "Find a flat, stable, and safe location to change your tire. Avoid soft ground and hills.",
+            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (1).jpeg"
+        },
+        {
+            "title": "Turn on Your Hazard Lights",
+            "description": "Turn on your hazard lights to alert other drivers that you are changing your tire.",
+            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (2).jpeg"
+        },
+        {
+            "title": "Apply the Parking Brake",
+            "description": "Apply the parking brake to prevent your car from rolling while you change the tire.",
+            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (3).jpeg"
+        },
+        {
+            "title": "Place Wheel Wedges",
+            "description": "Place wheel wedges against the tires opposite of the flat tire to prevent rolling.",
+            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (4).jpeg"
+        },
+        {
+            "title": "Remove the Hubcap or Wheel Cover",
+            "description": "Use a lug wrench to remove the hubcap or wheel cover from the flat tire.",
+            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (5).jpeg"
+        },
+        {
+            "title": "Loosen the Lug Nuts",
+            "description": "Loosen the lug nuts on the flat tire, but do not remove them completely."
+        },
+        {
+            "title": "Lift the Vehicle",
+            "description": "Use a jack to lift the vehicle off the ground, ensuring it is stable and secure."
+        },
+        {
+            "title": "Remove the Flat Tire",
+            "description": "Fully remove the lug nuts and take off the flat tire from the wheel hub."
+        },
+        {
+            "title": "Mount the Spare Tire",
+            "description": "Place the spare tire onto the wheel hub and hand-tighten the lug nuts."
+        },
+        {
+            "title": "Lower the Vehicle",
+            "description": "Carefully lower the vehicle back to the ground using the jack."
+        },
+        {
+            "title": "Tighten the Lug Nuts",
+            "description": "Use the lug wrench to tighten the lug nuts on the spare tire in a star pattern."
+        },
+        {
+            "title": "Replace the Hubcap or Wheel Cover",
+            "description": "Put the hubcap or wheel cover back on the spare tire."
+        },
+        {
+            "title": "Lower the Vehicle Completely",
+            "description": "Lower the vehicle completely and remove the jack."
+        },
+        {
+            "title": "Check the Tire Pressure",
+            "description": "Check the tire pressure of the spare tire and adjust as needed."
+        },
+        {
+            "title": "Stow Your Equipment",
+            "description": "Stow your equipment back in the vehicle and ensure everything is secure."
+        },
+        {
+            "title": "Drive to a Service Station",
+            "description": "Drive to a service station to have the flat tire repaired or replaced."
+        }
+    ]
+}
