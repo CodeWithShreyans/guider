@@ -47,13 +47,29 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                 )}
                 estimatedItemSize={ESTIMATED_ITEM_HEIGHT.titleOnly}
                 ListEmptyComponent={
-                    <View className="flex items-center justify-center">
+                    <View className="flex items-center justify-center gap-4">
                         <Text
                             variant="largeTitle"
                             className="font-semibold pt-8"
                         >
                             What Should I Do Now?
                         </Text>
+                        <View className="flex items-center justify-center">
+                            <Text
+                                variant="body"
+                                className="text-muted-foreground"
+                            >
+                                Search for something you need guidance with.
+                                {"\n"}
+                            </Text>
+                            <Text
+                                variant="body"
+                                className="text-muted-foreground text-center"
+                            >
+                                During testing, you can search for "How to
+                                change a tire" or "How to change a bulb".
+                            </Text>
+                        </View>
                     </View>
                 }
                 contentContainerClassName="bg-background"

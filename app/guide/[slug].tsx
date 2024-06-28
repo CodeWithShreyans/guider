@@ -41,22 +41,14 @@ const GuidePage = () => {
     return (
         <ScrollView
             style={{
-                paddingTop: insets.top,
+                paddingTop: 12,
                 paddingLeft: insets.left + 12,
                 paddingRight: insets.right + 12,
                 paddingBottom: insets.bottom,
             }}
         >
-            <Stack.Screen options={{ headerShown: false }} />
-            <Button
-                variant="plain"
-                size="icon"
-                className="-left-2"
-                onPress={() => navigation.goBack()}
-            >
-                <Icon name="chevron-left" size={21} />
-            </Button>
-            <Text variant="largeTitle" className="font-semibold pb-4 pt-12">
+            <Stack.Screen options={{ title: "" }} />
+            <Text variant="largeTitle" className="font-semibold pb-4">
                 {guide?.title}
             </Text>
             <View className="flex flex-col gap-4">
