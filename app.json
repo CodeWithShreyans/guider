@@ -2,7 +2,7 @@
     "expo": {
         "name": "What Should I Do Now?",
         "slug": "wsidnow",
-        "version": "1.0.0",
+        "version": "1.0.2",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
         "scheme": "myapp",
@@ -29,12 +29,6 @@
             "favicon": "./assets/images/favicon.png"
         },
         "plugins": [
-            [
-                "expo-font",
-                {
-                    "fonts": ["./assets/fonts/GeistVF.ttf"]
-                }
-            ],
             "expo-router",
             [
                 "expo-build-properties",
@@ -59,6 +53,12 @@
                 "projectId": "361d7da3-ba0b-4ea8-b032-c9b91816ed50"
             }
         },
-        "owner": "codewithshreyans"
+        "owner": "codewithshreyans",
+        "runtimeVersion": {
+            "policy": "appVersion"
+        },
+        "updates": {
+            "url": "https://u.expo.dev/361d7da3-ba0b-4ea8-b032-c9b91816ed50"
+        }
     }
 }

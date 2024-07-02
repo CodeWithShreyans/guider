@@ -1,9 +1,9 @@
 import {
-    FlashList,
-    type FlashListProps,
-    type ListRenderItem as FlashListRenderItem,
+    FlatList,
+    type FlatListProps,
+    type ListRenderItem as FlastListRenderItem,
     type ListRenderItemInfo,
-} from "@shopify/flash-list";
+} from "react-native";
 import { cva } from "class-variance-authority";
 import { cssInterop } from "nativewind";
 import * as React from "react";
@@ -21,7 +21,7 @@ import { Text, TextClassContext } from "@/components/nativewindui/Text";
 import { Button } from "@/components/nativewindui/Button";
 import { cn } from "@/lib/cn";
 
-cssInterop(FlashList, {
+cssInterop(FlatList, {
     className: "style",
     contentContainerClassName: "contentContainerStyle",
 });
@@ -29,7 +29,7 @@ cssInterop(FlashList, {
 type ListDataItem = string | { title: string; subTitle?: string };
 type ListVariant = "insets" | "full-width";
 
-type ListRef<T extends ListDataItem> = React.Ref<FlashList<T>>;
+type ListRef<T extends ListDataItem> = React.Ref<FlatList<T>>;
 
 type ListRenderItemProps<T extends ListDataItem> = ListRenderItemInfo<T> & {
     variant?: ListVariant;
@@ -39,7 +39,7 @@ type ListRenderItemProps<T extends ListDataItem> = ListRenderItemInfo<T> & {
 };
 
 type ListProps<T extends ListDataItem> = Omit<
-    FlashListProps<T>,
+    FlatListProps<T>,
     "renderItem"
 > & {
     renderItem?: ListRenderItem<T>;
@@ -49,7 +49,7 @@ type ListProps<T extends ListDataItem> = Omit<
 };
 type ListRenderItem<T extends ListDataItem> = (
     props: ListRenderItemProps<T>
-) => ReturnType<FlashListRenderItem<T>>;
+) => ReturnType<FlastListRenderItem<T>>;
 
 const rootVariants = cva("min-h-2 flex-1", {
     variants: {
@@ -96,7 +96,7 @@ function ListComponent<T extends ListDataItem>(
                 className: rootClassName,
             })}
         >
-            <FlashList
+            <FlatList
                 data={data}
                 renderItem={renderItemWithVariant(
                     renderItem,

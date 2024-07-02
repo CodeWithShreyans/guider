@@ -1,12 +1,10 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Text } from "@/components/nativewindui/Text";
-import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button } from "@/components/nativewindui/Button";
-import { Icon } from "@roninoss/icons";
 
 type Guide = {
     title: string;
@@ -22,7 +20,6 @@ type Guide = {
 const GuidePage = () => {
     const { slug } = useLocalSearchParams();
     const insets = useSafeAreaInsets();
-    const navigation = useNavigation();
     const [guide, setGuide] = useState<Guide | null>(null);
 
     useEffect(() => {
@@ -68,8 +65,8 @@ const GuidePage = () => {
                                 {step.title}
                             </Text>
                         </View>
-                        <Text variant="body" className="text-pretty">
-                            {step.description}
+                        <Text variant="body">
+                            {step.description.replaceAll("\n", "\n\n")}
                         </Text>
                     </View>
                 ))}

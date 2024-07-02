@@ -5,6 +5,7 @@ import { SearchResults } from "@/app";
 import { Link } from "expo-router";
 import { Text } from "@/components/nativewindui/Text";
 import { ESTIMATED_ITEM_HEIGHT, List, ListItem } from "./nativewindui/List";
+import { Button } from "./nativewindui/Button";
 
 const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
     return (
@@ -41,6 +42,7 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                             params: { slug: item.item.slug },
                         }}
                         asChild
+                        onPress={() => console.log("button")}
                     >
                         <ListItem {...item} />
                     </Link>
@@ -66,8 +68,8 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                                 variant="body"
                                 className="text-muted-foreground text-center"
                             >
-                                During testing, you can search for "How to
-                                change a tire" or "How to change a bulb".
+                                During testing, you can search for{"\n"}"How to
+                                change a tire".
                             </Text>
                         </View>
                     </View>

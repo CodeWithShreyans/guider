@@ -1,76 +1,51 @@
 {
     "title": "How to Change a Car Tire",
     "slug": "change-car-tire",
-    "image": "https://images.unsplash.com/photo-1572401611152-cf63d874b019?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyJTIwb24lMjB0aGUlMjByb2FkfGVufDB8fDB8fHww",
+    "image": "",
     "steps": [
         {
-            "title": "Find a Safe Location",
-            "description": "Find a flat, stable, and safe location to change your tire. Avoid soft ground and hills.",
-            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (1).jpeg"
+            "title": "Pull over and put your hazards on",
+            "description": "Find a safe area where traffic won’t be a risk. If you are near a road, park as far from traffic as possible and turn on your emergency hazard lights. Don’t park on an incline to keep your vehicle from rolling away, and stay off of soft soil or grass. If you have to drive slowly for a block or two to get to a safe, flat area, then so be it.\nApply the parking brake once you’re parked to ensure the vehicle doesn’t move.\nFor added peace of mind, place heavy rocks or blocks around each tire you aren’t changing to keep the vehicle from rolling."
         },
         {
-            "title": "Turn on Your Hazard Lights",
-            "description": "Turn on your hazard lights to alert other drivers that you are changing your tire.",
-            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (2).jpeg"
+            "title": "Remove your spare tire and the jack",
+            "description": "The spare will likely be underneath a cover in the trunk. Every make and model will be a little bit different, but your spare should be under the cloth or plastic cover at the bottom of your trunk. Retrieve the wheel from the trunk. Also, remove the jack and the tire iron you need to remove the lug nuts.\nThe jack is the metal object with a nut and spring. It goes under your vehicle to push it off of the ground.\nOn most vehicles, the tire iron is part of the jack. You’ll use it to turn the bolt on the end of the jack to raise or lower it, and also to remove the lug nuts on the tire.\nIf you drive a Jeep or a large SUV, the spare tire may be on the outside or underneath the vehicle.\nIf you don’t have a spare, your vehicle may have a sealant kit to temporarily patch your flat tire. If you don’t have that either, call a tow truck."
         },
         {
-            "title": "Apply the Parking Brake",
-            "description": "Apply the parking brake to prevent your car from rolling while you change the tire.",
-            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (3).jpeg"
+            "title": "Loosen the lug nuts",
+            "description": "Remove the hubcap and loosen the nuts part-way. Pry the hubcap off using the flat end of your tire iron or a flathead screwdriver. Do not remove the lug nuts entirely. Just use the end of the tire iron to loosen the nuts by turning them counterclockwise so that there’s no longer any resistance. You should be able to spin the nuts by hand, but they shouldn’t be so loose that they spin freely.\nBy keeping the wheel on the ground when you first loosen the nuts, you'll make sure that you're turning the nuts instead of the wheel.\nYour tire iron may have different sizes of openings on each end. The correct end for the nut will slip easily onto it, but it won’t be so loose that it rattles.\nIf your vehicle doesn’t have a hub cap, don’t worry about that part. If it does, your hub cap may have a center cap that needs to be unscrewed first.\nOn some newer vehicles you need a special “key” to unlock one of the lug nuts as a theft prevention strategy. Look in your glove box and trunk for a special tool that’ll remove that unique lug nut. These lug nuts will have a unique groove inside of them. Use the key to remove the locking lug nut."
         },
         {
-            "title": "Place Wheel Wedges",
-            "description": "Place wheel wedges against the tires opposite of the flat tire to prevent rolling.",
-            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (4).jpeg"
+            "title": "Slide the jack under the frame",
+            "description": "Place the divot in the jack directly under the metal rim of the frame. Get on the ground and use the flashlight on your phone to take a closer look. Touch the area directly behind the metal body of your exterior to feel and look for a thin, metal length. This is your frame. Set the jack underneath the frame right next to the tire you’re replacing.\nMany cars have molded plastic along the bottom. If you don't place the jack in the right spot, it will crack the plastic when you start lifting. If you're not sure about the right place to put the jack, read your owner's manual.\nThere may be a small notch or mark just behind the front wheel wells, or in front of the rear wheel wells where the jack is intended to be placed."
         },
         {
-            "title": "Remove the Hubcap or Wheel Cover",
-            "description": "Use a lug wrench to remove the hubcap or wheel cover from the flat tire.",
-            "imageUrl": "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev/Gemini Generated Image (5).jpeg"
+            "title": "Raise the vehicle off the ground",
+            "description": "Use the jack to raise your tire 4–6 inches (10–15 cm) off of the ground. Turn the handle of the jack clockwise to begin raising the platform up. Once the platform on the jack makes contact with the vehicle, take a look at the point where the jack meets the frame to confirm it’s on your frame. If it isn’t, loosen the jack and reposition it. If it is, continue to lift your vehicle off the ground.\nThe vast majority of jacks are scissor jacks. You use the tire iron or a rod to twist the nut on the side and hoist the vehicle. You might have a pump-assisted jack, though. With a pump jack, you repeatedly move the handle up and down to raise the vehicle hydraulically.\nThis can be kind of freaky the first time you do it. You might think your jack is going to snap or your car is going to tilt over. Don’t worry! Your jack and vehicle are designed to handle this.\nIt can take a few minutes and a lot of elbow grease to get that vehicle up, so feel free to take breaks if you need to.\nIt’s worth double-checking to make sure the jack is on the frame. You really don’t want to damage your vehicle with the jack."
         },
         {
-            "title": "Loosen the Lug Nuts",
-            "description": "Loosen the lug nuts on the flat tire, but do not remove them completely."
+            "title": "Remove the lug nuts and tire",
+            "description": "Pop the nuts off by hand and pull the tire off. You already loosened the nuts, so removing them should be fairly easy. Use the tire iron and brace the tire with your non-dominant hand if you need to. With all of the lug nuts removed, slide your busted wheel off of the axle and set it aside.\nFlip your hubcap upside down to turn it into a small bowl and set your lug nuts inside so that you don’t lose them."
         },
         {
-            "title": "Lift the Vehicle",
-            "description": "Use a jack to lift the vehicle off the ground, ensuring it is stable and secure."
+            "title": "Place the spare on the vehicle",
+            "description": "The side of the spare with the valve stem on it faces out. Line the lug nut bolts up with the openings on the spare and slide the spare on to the axle. The valve stem is the little rubber pipe that sticks out where you add air to the tire. If it’s pointed inward towards the body of the vehicle, the tire is backwards."
         },
         {
-            "title": "Remove the Flat Tire",
-            "description": "Fully remove the lug nuts and take off the flat tire from the wheel hub."
+            "title": "Replace the lug nuts by hand",
+            "description": "Don’t tighten the nuts using the tire iron just yet. Gently slide each over the bolt and tighten it by hand to partially lock them in place. You will tighten the lug nuts again once the car is down and there is no risk of it falling.\nJust to clarify, use the same lug nuts that were previously on your wheel. You don’t need special lug nuts for the spare."
         },
         {
-            "title": "Mount the Spare Tire",
-            "description": "Place the spare tire onto the wheel hub and hand-tighten the lug nuts."
+            "title": "Lower your vehicle",
+            "description": "With the wheel on the axle, lower the jack and remove it. Turn the handle or bolt on the jack counterclockwise to begin lowering the vehicle. Continue lowering the vehicle until the tire is comfortably back on the ground. Then, carefully remove the jack from underneath and set it back in your trunk.\nKeep your entire body out from underneath the vehicle. If the jack slips your vehicle gets closer to the ground, you don’t want your body underneath it."
         },
         {
-            "title": "Lower the Vehicle",
-            "description": "Carefully lower the vehicle back to the ground using the jack."
+            "title": "Tighten the lug nuts",
+            "description": "Completely tighten the nuts until they won’t turn any further. Using the tire iron, tighten each nuts 3-4 times and then move on to the lug nut on the opposite side. Work in a star pattern to ensure the nuts are secured in an even pattern. Continue tightening the nuts in a cycle until all of the lug nuts are completely secure.\nAfter you’ve tightened each nut, try to tighten each nut one more time to ensure they’re as tight as they can possibly get.\nPut your busted tire in the trunk alongside the jack and tire iron."
         },
         {
-            "title": "Tighten the Lug Nuts",
-            "description": "Use the lug wrench to tighten the lug nuts on the spare tire in a star pattern."
-        },
-        {
-            "title": "Replace the Hubcap or Wheel Cover",
-            "description": "Put the hubcap or wheel cover back on the spare tire."
-        },
-        {
-            "title": "Lower the Vehicle Completely",
-            "description": "Lower the vehicle completely and remove the jack."
-        },
-        {
-            "title": "Check the Tire Pressure",
-            "description": "Check the tire pressure of the spare tire and adjust as needed."
-        },
-        {
-            "title": "Stow Your Equipment",
-            "description": "Stow your equipment back in the vehicle and ensure everything is secure."
-        },
-        {
-            "title": "Drive to a Service Station",
-            "description": "Drive to a service station to have the flat tire repaired or replaced."
+            "title": "Get your tire fixed ASAP",
+            "description": "Keep your speed under 50 miles per hour (80 km/h) and don't go further than 50 miles (80 km). If your spare is a full-size tire (it often isn't), you can drive the same way you normally would. Check your tire pressure and fill your spare with air as needed. This is especially important if the spare has been in your trunk for a while, since it may have leaked a little in storage.\nHead to an auto shop as soon as you can. If the tire is not repairable, you may need to buy a replacement tire."
         }
     ]
 }

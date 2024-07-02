@@ -33,8 +33,7 @@ export default function RootLayout() {
         });
 
         (async () => {
-            const BASE_URL =
-                "https://pub-5443694ea0c14312a955e32518bc2ff8.r2.dev";
+            const BASE_URL = "https://wsidnow-content.shreyans.sh";
             AsyncStorage.setItem("lastFetch", new Date().toISOString());
             const newIndex = await (
                 await fetch(`${BASE_URL}/index.json`)
