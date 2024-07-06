@@ -34,6 +34,7 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                             </ImageBackground>
                         </View> */}
             <List
+                keyboardShouldPersistTaps="handled"
                 data={searchResults}
                 renderItem={(item) => (
                     <Link
@@ -47,7 +48,6 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                         <ListItem {...item} />
                     </Link>
                 )}
-                estimatedItemSize={ESTIMATED_ITEM_HEIGHT.titleOnly}
                 ListEmptyComponent={
                     <View className="flex items-center justify-center gap-4">
                         <Text

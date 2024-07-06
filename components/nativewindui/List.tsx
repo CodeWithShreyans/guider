@@ -119,7 +119,6 @@ function ListComponent<T extends ListDataItem>(
                         default: insets.bottom,
                     }),
                 }}
-                getItemType={getItemType}
                 showsVerticalScrollIndicator={false}
                 {...props}
                 ref={ref}
@@ -135,7 +134,7 @@ function getItemType<T>(item: T) {
 function renderItemWithVariant<T extends ListDataItem>(
     renderItem: ListRenderItem<T> | null | undefined,
     variant: ListVariant,
-    data: readonly T[] | null | undefined,
+    data: ArrayLike<T> | null | undefined,
     sectionHeaderAsGap?: boolean
 ) {
     return (args: ListRenderItemProps<T>) => {
