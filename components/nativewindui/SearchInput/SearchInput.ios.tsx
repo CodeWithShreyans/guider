@@ -1,3 +1,4 @@
+import { useAugmentedRef, useControllableState } from '@rn-primitives/hooks';
 import { Icon } from '@roninoss/icons';
 import * as React from 'react';
 import {
@@ -18,10 +19,10 @@ import Animated, {
 
 import type { SearchInputProps } from './types';
 
-import { Text } from '@/components/nativewindui/Text';
-import { useAugmentedRef, useControllableState } from '@/components/nativewindui/hooks';
-import { cn } from '@/lib/cn';
-import { useColorScheme } from '@/lib/useColorScheme';
+import { Text } from '~/components/nativewindui/Text';
+
+import { cn } from '~/lib/cn';
+import { useColorScheme } from '~/lib/useColorScheme';
 
 // Add as class when possible: https://github.com/marklawlor/nativewind/issues/522
 const BORDER_CURVE: ViewStyle = {

@@ -9,7 +9,7 @@ const BACKGROUND_FETCH_TASK = "fetch-new-guides";
 // Note: This needs to be called in the global scope (e.g outside of your React components)
 TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
     try {
-        const BASE_URL = "https://wsidnow-content.shreyans.sh";
+        const BASE_URL = "https://guider-content.shreyans.sh";
         AsyncStorage.setItem("lastFetch", new Date().toISOString());
         const newIndex = await (await fetch(`${BASE_URL}/index.json`)).json();
         const storedIndex = await AsyncStorage.getItem("guideIndex");

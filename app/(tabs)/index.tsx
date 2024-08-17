@@ -5,9 +5,9 @@ import {
 } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import { stringSimilarity } from "string-similarity-js";
-import guideIndex from "@/guides/index.json";
-import { GuidesView } from "@/components/guides";
-import { SearchInput } from "@/components/nativewindui/SearchInput";
+import guideIndex from "~/guides/index.json";
+import { GuidesView } from "~/components/guides";
+import { SearchInput } from "~/components/nativewindui/SearchInput";
 
 export type SearchResults = {
     title: string;
@@ -41,8 +41,6 @@ export default function HomeScreen() {
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState<SearchResults>([]);
 
-    const insets = useSafeAreaInsets();
-
     useEffect(() => console.log("LOG", searchResults), [searchResults]);
 
     return (
@@ -51,10 +49,10 @@ export default function HomeScreen() {
                 flex: 1,
                 flexDirection: "column",
                 alignItems: "flex-start",
-                paddingTop: insets.top,
-                paddingLeft: insets.left,
-                paddingRight: insets.right,
-                paddingBottom: insets.bottom,
+                // paddingTop: insets.top,
+                // paddingLeft: insets.left,
+                // paddingRight: insets.right,
+                // paddingBottom: insets.bottom,
             }}
         >
             <View className="w-full px-2">

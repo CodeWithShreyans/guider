@@ -1,3 +1,4 @@
+import { useAugmentedRef, useControllableState } from '@rn-primitives/hooks';
 import { Icon } from '@roninoss/icons';
 import * as React from 'react';
 import { Pressable, TextInput, View } from 'react-native';
@@ -5,10 +6,9 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import type { SearchInputProps } from './types';
 
-import { Button } from '@/components/nativewindui/Button';
-import { useAugmentedRef, useControllableState } from '@/components/nativewindui/hooks';
-import { cn } from '@/lib/cn';
-import { useColorScheme } from '@/lib/useColorScheme';
+import { Button } from '~/components/nativewindui/Button';
+import { cn } from '~/lib/cn';
+import { useColorScheme } from '~/lib/useColorScheme';
 
 const SearchInput = React.forwardRef<React.ElementRef<typeof TextInput>, SearchInputProps>(
   (

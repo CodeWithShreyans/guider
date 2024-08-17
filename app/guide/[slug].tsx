@@ -1,10 +1,10 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Text } from "@/components/nativewindui/Text";
+import { Text } from "~/components/nativewindui/Text";
 import { Stack, useLocalSearchParams } from "expo-router";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 
 type Guide = {
     title: string;
@@ -49,27 +49,31 @@ const GuidePage = () => {
                 {guide?.title}
             </Text>
             <View className="flex flex-col gap-4">
-                {guide?.steps.map((step, i) => (
-                    <View key={i}>
-                        <View className="flex flex-row items-end">
-                            <Text
-                                variant="largeTitle"
-                                className="text-muted-foreground"
-                            >
-                                {i + 1}.{" "}
-                            </Text>
-                            <Text
-                                variant="heading"
-                                className="text-xl leading-8"
-                            >
-                                {step.title}
+                <FlatList
+                    scrollEnabled={false}
+                    data={guide?.steps}
+                    renderItem={({ item, index }) => (
+                        <View key={index}>
+                            <View className="flex flex-row items-end">
+                                <Text
+                                    variant="largeTitle"
+                                    className="text-muted-foreground"
+                                >
+                                    {index + 1}.{" "}
+                                </Text>
+                                <Text
+                                    variant="heading"
+                                    className="text-xl leading-8"
+                                >
+                                    {item.title}
+                                </Text>
+                            </View>
+                            <Text variant="body">
+                                {item.description.replaceAll("\n", "\n\n")}
                             </Text>
                         </View>
-                        <Text variant="body">
-                            {step.description.replaceAll("\n", "\n\n")}
-                        </Text>
-                    </View>
-                ))}
+                    )}
+                />
             </View>
         </ScrollView>
     );

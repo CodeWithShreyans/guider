@@ -1,38 +1,12 @@
 import { View } from "react-native";
-// import { ImageBackground } from "expo-image";
-// import { BlurView } from "expo-blur";
-import { SearchResults } from "@/app";
+import { SearchResults } from "~/app/(tabs)";
 import { Link } from "expo-router";
-import { Text } from "@/components/nativewindui/Text";
-import { ESTIMATED_ITEM_HEIGHT, List, ListItem } from "./nativewindui/List";
-import { Button } from "./nativewindui/Button";
+import { Text } from "~/components/nativewindui/Text";
+import { List, ListItem } from "./nativewindui/List";
 
 const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
     return (
         <View className="h-full w-full pt-2">
-            {/* <View className="">
-                            <ImageBackground
-                                // style={{
-                                //     width: "100%",
-                                //     height: 200,
-                                // }}
-                                // className="rounded"
-                                source={guide.image}
-                            >
-                                <BlurView
-                                    experimentalBlurMethod="dimezisBlurView"
-                                    intensity={100}
-                                    className="w-min overflow-hidden"
-                                >
-                                    <Text
-                                        className="text-3xl p-2 w-full"
-                                        variant="heading"
-                                    >
-                                        {guide.title}
-                                    </Text>
-                                </BlurView>
-                            </ImageBackground>
-                        </View> */}
             <List
                 keyboardShouldPersistTaps="handled"
                 data={searchResults}
@@ -52,16 +26,16 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                     <View className="flex items-center justify-center gap-4">
                         <Text
                             variant="largeTitle"
-                            className="font-semibold pt-8"
+                            className="font-semibold pt-6"
                         >
-                            What Should I Do Now?
+                            Guider
                         </Text>
                         <View className="flex items-center justify-center">
                             <Text
                                 variant="body"
                                 className="text-muted-foreground"
                             >
-                                Search for something you need guidance with.
+                                Search for a guide to get started
                                 {"\n"}
                             </Text>
                             <Text
@@ -69,12 +43,12 @@ const GuidesView = ({ searchResults }: { searchResults: SearchResults }) => {
                                 className="text-muted-foreground text-center"
                             >
                                 During testing, you can search for{"\n"}"How to
-                                change a tire".
+                                change a tire"
                             </Text>
                         </View>
                     </View>
                 }
-                contentContainerClassName="bg-background"
+                contentContainerClassName="bg-card"
             />
         </View>
     );

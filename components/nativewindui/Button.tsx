@@ -2,11 +2,11 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { Platform, Pressable, PressableProps, View, ViewStyle } from 'react-native';
 
-import { TextClassContext } from '@/components/nativewindui/Text';
-import * as Slot from '@/components/nativewindui/slot';
-import { cn } from '@/lib/cn';
-import { useColorScheme } from '@/lib/useColorScheme';
-import { COLORS } from '@/theme/colors';
+import { TextClassContext } from '~/components/nativewindui/Text';
+import * as Slot from '@rn-primitives/slot';
+import { cn } from '~/lib/cn';
+import { useColorScheme } from '~/lib/useColorScheme';
+import { COLORS } from '~/theme/colors';
 
 const buttonVariants = cva('flex-row items-center justify-center gap-2', {
   variants: {
@@ -21,7 +21,7 @@ const buttonVariants = cva('flex-row items-center justify-center gap-2', {
       none: '',
       sm: 'py-1 px-2.5 rounded-full',
       md: 'ios:rounded-lg py-2 ios:py-1.5 ios:px-3.5 px-5 rounded-full',
-      lg: 'py-3.5 px-5 rounded-xl gap-2',
+      lg: 'py-2.5 px-5 ios:py-2 rounded-xl gap-2',
       icon: 'ios:rounded-lg h-10 w-10 rounded-full',
     },
   },
@@ -68,18 +68,32 @@ const buttonTextVariants = cva('font-medium', {
   },
 });
 
+function convertToRGBA(rgb: string, opacity: number): string {
+  const rgbValues = rgb.match(/\d+/g);
+  if (!rgbValues || rgbValues.length !== 3) {
+    throw new Error('Invalid RGB color format');
+  }
+  const red = parseInt(rgbValues[0], 10);
+  const green = parseInt(rgbValues[1], 10);
+  const blue = parseInt(rgbValues[2], 10);
+  if (opacity < 0 || opacity > 1) {
+    throw new Error('Opacity must be a number between 0 and 1');
+  }
+  return `rgba(${red},${green},${blue},${opacity})`;
+}
+
 const ANDROID_RIPPLE = {
   dark: {
-    primary: { color: COLORS.dark.grey3, borderless: false },
-    secondary: { color: COLORS.dark.grey5, borderless: false },
-    plain: { color: COLORS.dark.grey5, borderless: false },
-    tonal: { color: COLORS.dark.grey5, borderless: false },
+    primary: { color: convertToRGBA(COLORS.dark.grey3, 0.4), borderless: false },
+    secondary: { color: convertToRGBA(COLORS.dark.grey5, 0.8), borderless: false },
+    plain: { color: convertToRGBA(COLORS.dark.grey5, 0.8), borderless: false },
+    tonal: { color: convertToRGBA(COLORS.dark.grey5, 0.8), borderless: false },
   },
   light: {
-    primary: { color: COLORS.light.grey4, borderless: false },
-    secondary: { color: COLORS.light.grey5, borderless: false },
-    plain: { color: COLORS.light.grey5, borderless: false },
-    tonal: { color: COLORS.light.grey6, borderless: false },
+    primary: { color: convertToRGBA(COLORS.light.grey4, 0.4), borderless: false },
+    secondary: { color: convertToRGBA(COLORS.light.grey5, 0.4), borderless: false },
+    plain: { color: convertToRGBA(COLORS.light.grey5, 0.4), borderless: false },
+    tonal: { color: convertToRGBA(COLORS.light.grey6, 0.4), borderless: false },
   },
 };
 

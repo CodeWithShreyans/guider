@@ -1,35 +1,38 @@
 {
     "expo": {
-        "name": "What Should I Do Now?",
+        "name": "Guider",
         "slug": "wsidnow",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
-        "scheme": "myapp",
+        "scheme": "guider",
         "userInterfaceStyle": "automatic",
         "splash": {
-            "image": "./assets/images/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "image": "./assets/images/icon.png",
+            "backgroundColor": "#000000"
         },
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "sh.shreyans.wsidnow"
+            "bundleIdentifier": "sh.shreyans.wsidnow",
+            "entitlements": {
+                "aps-environment": "development"
+            }
         },
         "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
-            },
             "package": "sh.shreyans.wsidnow"
         },
         "web": {
+            "name": "Guider",
             "bundler": "metro",
-            "output": "static",
-            "favicon": "./assets/images/favicon.png"
+            "output": "server"
         },
         "plugins": [
-            "expo-router",
+            [
+                "expo-router",
+                {
+                    "origin": "http://guider.shreyans.sh"
+                }
+            ],
             [
                 "expo-build-properties",
                 {
