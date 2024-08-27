@@ -156,8 +156,6 @@ const RequestForm = () => {
                                     }
                                 );
 
-                                console.log(response);
-
                                 if (response.ok) {
                                     toast.success("Submitted!", {
                                         position: 2,
