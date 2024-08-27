@@ -23,58 +23,51 @@ const GuidePage = () => {
     const [guide, setGuide] = useState<Guide | null>(null);
 
     useEffect(() => {
-        console.log(slug);
         AsyncStorage.getItem(slug as string).then((guide) => {
             if (!guide) throw new Error("Guide not found");
             setGuide(JSON.parse(guide));
-        });
-
-        AsyncStorage.getAllKeys().then((keys) => {
-            console.log("keys", keys);
-            AsyncStorage.multiGet(keys).then((v) => console.log("values", v));
         });
     }, [slug]);
 
     return (
         <ScrollView
             style={{
-                paddingTop: 12,
-                paddingLeft: insets.left + 12,
-                paddingRight: insets.right + 12,
-                paddingBottom: insets.bottom,
+                marginTop: 16,
+                marginLeft: insets.left + 16,
+                paddingRight: insets.right + 16,
             }}
+            contentContainerClassName="pb-12"
         >
             <Stack.Screen options={{ title: "" }} />
             <Text variant="largeTitle" className="font-semibold pb-4">
                 {guide?.title}
             </Text>
-            <View className="flex flex-col gap-4">
-                <FlatList
-                    scrollEnabled={false}
-                    data={guide?.steps}
-                    renderItem={({ item, index }) => (
-                        <View key={index}>
-                            <View className="flex flex-row items-end">
-                                <Text
-                                    variant="largeTitle"
-                                    className="text-muted-foreground"
-                                >
-                                    {index + 1}.{" "}
-                                </Text>
-                                <Text
-                                    variant="heading"
-                                    className="text-xl leading-8"
-                                >
-                                    {item.title}
-                                </Text>
-                            </View>
-                            <Text variant="body">
-                                {item.description.replaceAll("\n", "\n\n")}
+            <FlatList
+                scrollEnabled={false}
+                data={guide?.steps}
+                contentContainerClassName="gap-6"
+                renderItem={({ item, index }) => (
+                    <View key={index} className="gap-1">
+                        <View className="flex flex-row items-end">
+                            <Text
+                                variant="largeTitle"
+                                className="text-muted-foreground self-center"
+                            >
+                                {index + 1}.{" "}
+                            </Text>
+                            <Text
+                                variant="heading"
+                                className="text-xl leading-8 flex-1 flex-wrap"
+                            >
+                                {item.title}
                             </Text>
                         </View>
-                    )}
-                />
-            </View>
+                        <Text variant="body">
+                            {item.description.replaceAll("\n", "\n\n")}
+                        </Text>
+                    </View>
+                )}
+            />
         </ScrollView>
     );
 };

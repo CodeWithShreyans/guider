@@ -26,7 +26,6 @@ const rankSearch = (
         if (score > 0.2) {
             searchResults.push({ ...v, score: score });
         }
-        console.log(v.title, score);
     });
     searchResults.sort((a, b) => b.score - a.score);
 
@@ -40,8 +39,6 @@ export default function HomeScreen() {
 
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState<SearchResults>([]);
-
-    useEffect(() => console.log("LOG", searchResults), [searchResults]);
 
     return (
         <SafeAreaView

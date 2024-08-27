@@ -50,7 +50,6 @@ export default function RootLayout() {
             ).json();
             const storedIndex = await AsyncStorage.getItem("guideIndex");
 
-            console.log(deepEqual(newIndex, JSON.parse(storedIndex as string)));
             if (storedIndex && deepEqual(newIndex, JSON.parse(storedIndex))) {
                 return;
             }
