@@ -1,5 +1,4 @@
 import { toast } from "@backpackapp-io/react-native-toast";
-import { Stack } from "expo-router";
 import * as React from "react";
 import { Platform, View } from "react-native";
 import {
@@ -16,7 +15,6 @@ import { Form, FormItem, FormSection } from "~/components/nativewindui/Form";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import { Text } from "~/components/nativewindui/Text";
 import { TextField } from "~/components/nativewindui/TextField";
-import { cn } from "~/lib/cn";
 
 const RequestForm = () => {
     const insets = useSafeAreaInsets();
@@ -146,7 +144,7 @@ const RequestForm = () => {
                                     return;
                                 }
                                 const response = await fetch(
-                                    "http://localhost:8081/request",
+                                    "https://guider.shreyans.sh/request",
                                     {
                                         method: "POST",
                                         body: JSON.stringify({
@@ -157,6 +155,8 @@ const RequestForm = () => {
                                         }),
                                     }
                                 );
+
+                                console.log(response);
 
                                 if (response.ok) {
                                     toast.success("Submitted!", {

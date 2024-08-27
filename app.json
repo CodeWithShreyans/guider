@@ -7,6 +7,7 @@
         "icon": "./assets/images/icons/tinted.png",
         "scheme": "guider",
         "userInterfaceStyle": "automatic",
+        "platforms": ["ios", "android"],
         "splash": {
             "image": "./assets/images/icons/tinted.png",
             "backgroundColor": "#000000"
@@ -21,18 +22,7 @@
         "android": {
             "package": "sh.shreyans.wsidnow"
         },
-        "web": {
-            "name": "Guider",
-            "bundler": "metro",
-            "output": "server"
-        },
         "plugins": [
-            [
-                "expo-router",
-                {
-                    "origin": "http://guider.shreyans.sh"
-                }
-            ],
             [
                 "expo-build-properties",
                 {
