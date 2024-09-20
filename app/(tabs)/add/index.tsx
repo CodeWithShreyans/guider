@@ -1,12 +1,6 @@
 import { Icon, MaterialIconName } from "@roninoss/icons";
 import { router } from "expo-router";
 import { PressableProps, View } from "react-native";
-
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "~/components/nativewindui/Avatar";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import {
     ESTIMATED_ITEM_HEIGHT,
@@ -140,10 +134,17 @@ const DATA: MockData[] = [
     // "gap 2",
     {
         id: "1",
-        title: "About",
+        title: "Request",
         leftView: (
-            <IconView name="information-outline" className="bg-gray-600" />
+            <IconView name="message-question-outline" className="bg-red-600" />
         ),
-        onPress: () => router.push("/about"),
+        onPress: () => router.push("/request"),
+    },
+    "gap 2",
+    {
+        id: "2",
+        title: "Contribute",
+        leftView: <IconView name="pencil" className="bg-blue-600" />,
+        onPress: () => router.push("/contribute"),
     },
 ];

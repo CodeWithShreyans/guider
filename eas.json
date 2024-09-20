@@ -1,6 +1,7 @@
 {
     "cli": {
-        "version": ">= 9.2.0"
+        "version": ">= 9.2.0",
+        "appVersionSource": "remote"
     },
     "build": {
         "development": {
@@ -26,7 +27,8 @@
             "ios": {
                 "image": "latest"
             },
-            "channel": "production"
+            "channel": "production",
+            "autoIncrement": true
         }
     },
     "submit": {

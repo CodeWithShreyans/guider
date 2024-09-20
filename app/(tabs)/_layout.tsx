@@ -51,9 +51,9 @@ export default function TabLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="request/index"
+                    name="add/index"
                     options={{
-                        title: "Request",
+                        title: "Add",
                         tabBarIcon(props) {
                             return !props.focused ? (
                                 <Icon

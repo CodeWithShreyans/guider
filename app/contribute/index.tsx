@@ -1,4 +1,5 @@
 import { toast } from "@backpackapp-io/react-native-toast";
+import { Stack } from "expo-router";
 import * as React from "react";
 import { Platform, View } from "react-native";
 import {
@@ -51,7 +52,6 @@ const RequestForm = () => {
                             <TextField
                                 textContentType="name"
                                 autoComplete="name"
-                                autoFocus
                                 label={Platform.select({
                                     ios: undefined,
                                     default: "Name",
@@ -173,10 +173,13 @@ const RequestForm = () => {
 };
 
 export default function FormScreen() {
-    const [submitted, setSubmitted] = React.useState(false);
-
     return (
         <>
+            <Stack.Screen
+                options={{
+                    headerTitle: "Request",
+                }}
+            />
             <LargeTitleHeader
                 title="Request"
                 searchBar={{ iosHideWhenScrolling: true }}
