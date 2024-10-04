@@ -7,7 +7,7 @@ import * as React from "react";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Toasts } from "@backpackapp-io/react-native-toast";
+import { Toaster } from "sonner-native";
 import { useEffect } from "react";
 import { registerBackgroundFetchAsync } from "./background-fetch";
 import { getRegisteredTasksAsync } from "expo-task-manager";
@@ -83,11 +83,11 @@ export default function RootLayout() {
                             />
                             <Stack.Screen name="+not-found" />
                         </Stack>
-                        <Toasts
-                            extraInsets={{
-                                bottom: 80,
-                            }}
-                            overrideDarkMode={!isDarkColorScheme}
+                        <Toaster
+                            theme={colorScheme}
+                            position="bottom-center"
+                            swipeToDismissDirection="left"
+                            richColors={true}
                         />
                         <PortalHost />
                     </ThemeProvider>

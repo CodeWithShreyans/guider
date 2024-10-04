@@ -19,6 +19,8 @@ type TextFieldProps = TextInputProps & {
    * Material variant for the input.
    */
   materialVariant?: 'outlined' | 'filled';
+  materialRingColor?: string;
+  materialHideActionIcons?: boolean;
 };
 
 type TextFieldRef = TextInput;

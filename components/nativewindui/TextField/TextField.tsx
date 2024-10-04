@@ -44,6 +44,8 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       accessibilityHint,
       errorMessage,
       materialVariant = 'outlined',
+      materialRingColor,
+      materialHideActionIcons,
       ...props
     },
     ref
@@ -53,7 +55,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
 
     const [value = '', onChangeText] = useControllableState({
       prop: valueProp,
-      defaultProp: valueProp ?? '',
+      defaultProp: defaultValueProp ?? valueProp ?? '',
       onChange: onChangeTextProp,
     });
 
@@ -92,6 +94,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
           }),
           className: containerClassName,
         })}
+        style={materialRingColor ? { borderColor: materialRingColor } : undefined}
         disabled={editable === false}
         onPress={focus}>
         <View
@@ -102,7 +105,8 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
               hasError: !!errorMessage,
               editable,
             }),
-          })}>
+          })}
+          style={materialRingColor && isFocused ? { borderColor: materialRingColor } : undefined}>
           {leftView}
           <InputWrapper>
             {!!label && (
@@ -120,7 +124,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
               ref={inputRef}
               editable={editable}
               className={cn(
-                'flex-1 rounded py-3 pl-2.5 text-[17px] text-foreground dark:placeholder:text-white/30',
+                'text-foreground flex-1 rounded py-3 pl-2.5 text-[17px] dark:placeholder:text-white/30',
                 materialVariant === 'filled' && !!label && 'pb-2 pt-5',
                 className
               )}
@@ -133,10 +137,14 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
               {...props}
             />
           </InputWrapper>
-          {!!errorMessage ? (
-            <MaterialErrorIcon />
-          ) : (
-            !!value && isFocused && <MaterialClearIcon clearText={clear} editable={editable} />
+          {!materialHideActionIcons && (
+            <>
+              {!!errorMessage ? (
+                <MaterialErrorIcon />
+              ) : (
+                !!value && isFocused && <MaterialClearIcon clearText={clear} editable={editable} />
+              )}
+            </>
           )}
           {rightView}
         </View>

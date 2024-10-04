@@ -23,6 +23,8 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       accessibilityHint,
       errorMessage,
       materialVariant: _materialVariant,
+      materialRingColor: _materialRingColor,
+      materialHideActionIcons: _materialHideActionIcons,
       ...props
     },
     ref
@@ -66,7 +68,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
           <TextInput
             ref={inputRef}
             editable={editable}
-            className={cn('flex-1 px-2.5 py-3 text-[17px] text-foreground', className)}
+            className={cn('text-foreground flex-1 px-2.5 py-3 text-[17px]', className)}
             onChangeText={onChangeText}
             value={value}
             clearButtonMode="while-editing"

@@ -1,4 +1,4 @@
-import { toast } from "@backpackapp-io/react-native-toast";
+import { toast } from "sonner-native";
 import { Stack } from "expo-router";
 import * as React from "react";
 import { Platform, View } from "react-native";
@@ -6,29 +6,71 @@ import {
     KeyboardAwareScrollView,
     KeyboardGestureArea,
 } from "react-native-keyboard-controller";
-import {
-    SafeAreaView,
-    useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Alert } from "~/components/nativewindui/Alert";
 
 import { Button } from "~/components/nativewindui/Button";
 import { Form, FormItem, FormSection } from "~/components/nativewindui/Form";
-import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import { Text } from "~/components/nativewindui/Text";
 import { TextField } from "~/components/nativewindui/TextField";
 
-const RequestForm = () => {
+const ContributeForm = () => {
     const insets = useSafeAreaInsets();
     const [canSave, setCanSave] = React.useState(false);
 
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [title, setTitle] = React.useState("");
-    const [reason, setReason] = React.useState("");
+    const [mainTitle, setMainTitle] = React.useState("");
+    const [steps, setSteps] = React.useState([
+        { heading: "", description: "" },
+    ]);
+
+    React.useEffect(() => {
+        console.log(steps);
+    }, [steps]);
 
     const onChange = () => {
         if (!canSave) {
             setCanSave(true);
+        }
+    };
+
+    const addStep = () => {
+        setSteps([...steps, { heading: "", description: "" }]);
+    };
+
+    const removeStep = (index: number) => {
+        setSteps((prevSteps) => prevSteps.filter((_, i) => i !== index));
+    };
+
+    const updateStep = (
+        index: number,
+        field: "heading" | "description",
+        value: string
+    ) => {
+        const newSteps = [...steps];
+        newSteps[index][field] = value;
+        setSteps(newSteps);
+    };
+
+    const onSubmit = async () => {
+        console.log("submit", steps);
+        if (
+            !mainTitle ||
+            steps.some((step) => !step.heading || !step.description)
+        ) {
+            toast.error("Please fill out all fields");
+            return;
+        }
+
+        const response = await fetch("https://guider.shreyans.sh/request", {
+            method: "POST",
+            body: JSON.stringify({
+                mainTitle,
+                steps,
+            }),
+        });
+
+        if (response.ok) {
+            toast.success("Submitted!");
         }
     };
 
@@ -39,130 +81,123 @@ const RequestForm = () => {
                 keyboardShouldPersistTaps="handled"
                 keyboardDismissMode="interactive"
                 contentContainerStyle={{ paddingBottom: insets.bottom }}
-                scrollEnabled={false}
             >
                 <Form className="gap-5 px-4 pt-8">
                     <FormSection
-                        materialIconProps={{ name: "person-outline" }}
+                        materialIconProps={{ name: "note-text-outline" }}
                         ios={{
-                            title: "Personal Details",
-                        }}
-                    >
-                        <FormItem>
-                            <TextField
-                                textContentType="name"
-                                autoComplete="name"
-                                label={Platform.select({
-                                    ios: undefined,
-                                    default: "Name",
-                                })}
-                                leftView={Platform.select({
-                                    ios: <LeftLabel>Name</LeftLabel>,
-                                })}
-                                placeholder={Platform.select({
-                                    ios: "required",
-                                })}
-                                onChange={(e) => {
-                                    onChange();
-                                    setName(e.nativeEvent.text);
-                                }}
-                            />
-                            <TextField
-                                textContentType="emailAddress"
-                                autoComplete="email"
-                                autoCapitalize="none"
-                                label={Platform.select({
-                                    ios: undefined,
-                                    default: "Email",
-                                })}
-                                leftView={Platform.select({
-                                    ios: <LeftLabel>Email</LeftLabel>,
-                                })}
-                                placeholder={Platform.select({
-                                    ios: "required",
-                                })}
-                                onChange={(e) => {
-                                    onChange();
-                                    setEmail(e.nativeEvent.text);
-                                }}
-                            />
-                        </FormItem>
-                    </FormSection>
-                    <FormSection
-                        materialIconProps={{
-                            name: "clipboard-list-outline",
-                        }}
-                        ios={{
-                            title: "Request Details",
+                            title: "",
                         }}
                     >
                         <FormItem>
                             <TextField
                                 textContentType="none"
                                 autoComplete="off"
-                                multiline
-                                labelClassName="text-foreground"
                                 label={Platform.select({
+                                    ios: undefined,
                                     default: "Title",
                                 })}
-                                placeholder={Platform.select({
-                                    ios: "required",
-                                })}
-                                onChange={(e) => {
-                                    onChange();
-                                    setTitle(e.nativeEvent.text);
-                                }}
-                            />
-                        </FormItem>
-                        <FormItem>
-                            <TextField
-                                textContentType="none"
-                                autoComplete="off"
-                                multiline
-                                labelClassName="text-foreground"
-                                label={Platform.select({
-                                    default: "Reason",
+                                leftView={Platform.select({
+                                    ios: <LeftLabel>Title</LeftLabel>,
                                 })}
                                 placeholder={Platform.select({
                                     ios: "required",
                                 })}
                                 onChange={(e) => {
                                     onChange();
-                                    setReason(e.nativeEvent.text);
+                                    setMainTitle(e.nativeEvent.text);
                                 }}
                             />
                         </FormItem>
                     </FormSection>
-                    <View className="items-center">
-                        <Button
-                            className="px-6"
-                            onPress={async () => {
-                                if (!name || !email || !title || !reason) {
-                                    toast.error("Please fill out all fields", {
-                                        position: 2,
-                                    });
-                                    return;
-                                }
-                                const response = await fetch(
-                                    "https://guider.shreyans.sh/request",
-                                    {
-                                        method: "POST",
-                                        body: JSON.stringify({
-                                            name,
-                                            email,
-                                            title,
-                                            reason,
-                                        }),
-                                    }
-                                );
-
-                                if (response.ok) {
-                                    toast.success("Submitted!", {
-                                        position: 2,
-                                    });
-                                }
+                    {steps.map((step, index) => (
+                        <FormSection
+                            key={index}
+                            materialIconProps={{
+                                name: "clipboard-list-outline",
+                            }}
+                            ios={{
+                                title: `Step ${index + 1}`,
                             }}
                         >
+                            <FormItem>
+                                <TextField
+                                    textContentType="none"
+                                    autoComplete="off"
+                                    label={Platform.select({
+                                        ios: undefined,
+                                        default: "Heading",
+                                    })}
+                                    leftView={Platform.select({
+                                        ios: <LeftLabel>Heading</LeftLabel>,
+                                    })}
+                                    placeholder={Platform.select({
+                                        ios: "required",
+                                    })}
+                                    onChange={(e) => {
+                                        onChange();
+                                        updateStep(
+                                            index,
+                                            "heading",
+                                            e.nativeEvent.text
+                                        );
+                                    }}
+                                    value={steps[index].heading}
+                                />
+                                <TextField
+                                    textContentType="none"
+                                    autoComplete="off"
+                                    multiline
+                                    labelClassName="text-foreground"
+                                    label={Platform.select({
+                                        default: "Description",
+                                    })}
+                                    placeholder={Platform.select({
+                                        ios: "required",
+                                    })}
+                                    onChange={(e) => {
+                                        onChange();
+                                        updateStep(
+                                            index,
+                                            "description",
+                                            e.nativeEvent.text
+                                        );
+                                    }}
+                                    value={steps[index].description}
+                                />
+                                {steps.length > 1 && (
+                                    <>
+                                        <Alert
+                                            title="Remove step?"
+                                            buttons={[
+                                                {
+                                                    text: "Cancel",
+                                                    style: "cancel",
+                                                },
+                                                {
+                                                    text: "OK",
+                                                    onPress: () =>
+                                                        removeStep(index),
+                                                },
+                                            ]}
+                                        >
+                                            <Button
+                                                className="mt-2"
+                                                variant="destructive"
+                                            >
+                                                <Text>Remove</Text>
+                                            </Button>
+                                        </Alert>
+                                    </>
+                                )}
+                            </FormItem>
+                        </FormSection>
+                    ))}
+                    <View className="items-center">
+                        <Button className="px-6 mb-4" onPress={addStep}>
+                            <Text>Add Step</Text>
+                        </Button>
+                        <Button className="px-6" onPress={onSubmit}>
                             <Text>Submit</Text>
                         </Button>
                     </View>
@@ -177,17 +212,11 @@ export default function FormScreen() {
         <>
             <Stack.Screen
                 options={{
-                    headerTitle: "Request",
+                    headerTitle: "Contribute",
                 }}
             />
-            <LargeTitleHeader
-                title="Request"
-                searchBar={{ iosHideWhenScrolling: true }}
-            />
 
-            <SafeAreaView style={{ paddingTop: 16 }}>
-                <RequestForm />
-            </SafeAreaView>
+            <ContributeForm />
         </>
     );
 }

@@ -1,4 +1,4 @@
-import { toast } from "@backpackapp-io/react-native-toast";
+import { toast } from "sonner-native";
 import { Stack } from "expo-router";
 import * as React from "react";
 import { Platform, View } from "react-native";
@@ -138,9 +138,7 @@ const RequestForm = () => {
                             className="px-6"
                             onPress={async () => {
                                 if (!name || !email || !title || !reason) {
-                                    toast.error("Please fill out all fields", {
-                                        position: 2,
-                                    });
+                                    toast.error("Please fill out all fields");
                                     return;
                                 }
                                 const response = await fetch(
@@ -157,9 +155,7 @@ const RequestForm = () => {
                                 );
 
                                 if (response.ok) {
-                                    toast.success("Submitted!", {
-                                        position: 2,
-                                    });
+                                    toast.success("Submitted!");
                                 }
                             }}
                         >
@@ -180,14 +176,8 @@ export default function FormScreen() {
                     headerTitle: "Request",
                 }}
             />
-            <LargeTitleHeader
-                title="Request"
-                searchBar={{ iosHideWhenScrolling: true }}
-            />
 
-            <SafeAreaView style={{ paddingTop: 16 }}>
-                <RequestForm />
-            </SafeAreaView>
+            <RequestForm />
         </>
     );
 }
