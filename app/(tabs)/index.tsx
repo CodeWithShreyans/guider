@@ -3,11 +3,12 @@ import {
     SafeAreaView,
     useSafeAreaInsets,
 } from "react-native-safe-area-context";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { stringSimilarity } from "string-similarity-js";
 import guideIndex from "~/guides/index.json";
 import { GuidesView } from "~/components/guides";
 import { SearchInput } from "~/components/nativewindui/SearchInput";
+import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 
 export type SearchResults = {
     title: string;
@@ -33,35 +34,36 @@ const rankSearch = (
 };
 
 export default function HomeScreen() {
-    // const searchBarPosition = useSharedValue("center") as
-    //     | SharedValue<"center">
-    //     | SharedValue<"flex-start">;
+    const insets = useSafeAreaInsets();
 
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState<SearchResults>([]);
 
     return (
-        <SafeAreaView
-            style={{
-                flex: 1,
-                flexDirection: "column",
-                alignItems: "flex-start",
-                // paddingTop: insets.top,
-                // paddingLeft: insets.left,
-                // paddingRight: insets.right,
-                // paddingBottom: insets.bottom,
-            }}
-        >
-            <View className="w-full px-2">
-                <SearchInput
-                    value={searchValue}
-                    onChangeText={(text) => {
-                        setSearchValue(text);
-                        rankSearch(text, setSearchResults);
-                    }}
-                />
-            </View>
-            <GuidesView searchResults={searchResults} />
-        </SafeAreaView>
+        <>
+            <LargeTitleHeader
+                title="Home"
+                searchBar={{ iosHideWhenScrolling: true }}
+            />
+            <SafeAreaView
+                style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    paddingTop: insets.top - 16,
+                }}
+            >
+                <View className="w-full px-2">
+                    <SearchInput
+                        value={searchValue}
+                        onChangeText={(text) => {
+                            setSearchValue(text);
+                            rankSearch(text, setSearchResults);
+                        }}
+                    />
+                </View>
+                <GuidesView searchResults={searchResults} />
+            </SafeAreaView>
+        </>
     );
 }

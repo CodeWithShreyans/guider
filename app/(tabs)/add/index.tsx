@@ -1,6 +1,7 @@
 import { Icon, MaterialIconName } from "@roninoss/icons";
 import { router } from "expo-router";
 import { PressableProps, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import {
     ESTIMATED_ITEM_HEIGHT,
@@ -18,7 +19,7 @@ export default function SettingsIosStyleScreen() {
     return (
         <>
             <LargeTitleHeader
-                title="Settings"
+                title="Add"
                 searchBar={{ iosHideWhenScrolling: true }}
             />
             <List
