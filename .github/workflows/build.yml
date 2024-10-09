@@ -2,6 +2,7 @@ on:
     push:
         branches:
             - main
+
 jobs:
     build:
         runs-on: macos-15
@@ -14,7 +15,8 @@ jobs:
               with:
                   node-version: latest
 
-            - uses: oven-sh/setup-bun@v2
+            - name: 🏗 Setup Bun
+              uses: oven-sh/setup-bun@v2
 
             - name: 🏗 Setup EAS
               uses: expo/expo-github-action@v8
@@ -26,5 +28,10 @@ jobs:
             - name: 📦 Install dependencies
               run: bun install
 
-            - name: 🚀 Build app
-              run: eas build --profile production --platform ios --non-interactive --local
+            - name: 🚧 Build app
+              run: eas build --profile production --platform ios --non-interactive --local --output ${{ github.workspace }}/build.ipa
+
+            - name: ⬆️ Upload IPA
+              uses: actions/upload-artifact@v4
+              with:
+                  path: ${{ github.workspace }}/build.ipa
