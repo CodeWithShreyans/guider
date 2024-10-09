@@ -5,11 +5,14 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { FlatList, ScrollView, View } from "react-native";
+import { getNetworkStateAsync } from "expo-network";
+import YoutubePlayer from "react-native-youtube-iframe";
 
 type Guide = {
     title: string;
     slug: string;
     image: string;
+    youtubeVideoId: string;
     steps: {
         title: string;
         description: string;
@@ -21,11 +24,19 @@ const GuidePage = () => {
     const { slug } = useLocalSearchParams();
     const insets = useSafeAreaInsets();
     const [guide, setGuide] = useState<Guide | null>(null);
+    const [showPlayer, setShowPlayer] = useState(false);
 
     useEffect(() => {
         AsyncStorage.getItem(slug as string).then((guide) => {
             if (!guide) throw new Error("Guide not found");
-            setGuide(JSON.parse(guide));
+            const guideJson = JSON.parse(guide);
+            setGuide(guideJson);
+            (async () => {
+                setShowPlayer(
+                    (await getNetworkStateAsync()).isInternetReachable! &&
+                        !!guideJson?.youtubeVideoId
+                );
+            })();
         });
     }, [slug]);
 
@@ -42,6 +53,9 @@ const GuidePage = () => {
             <Text variant="largeTitle" className="font-semibold pb-4">
                 {guide?.title}
             </Text>
+            {showPlayer ? (
+                <YoutubePlayer height={250} videoId={guide?.youtubeVideoId} />
+            ) : null}
             <FlatList
                 scrollEnabled={false}
                 data={guide?.steps}

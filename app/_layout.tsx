@@ -1,7 +1,7 @@
 import "~/global.css";
 import "expo-dev-client";
 
-import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import * as React from "react";
 
@@ -43,7 +43,7 @@ export default function RootLayout() {
         });
 
         (async () => {
-            const BASE_URL = "https://guider-content.shreyans.sh";
+            const BASE_URL = "https://content.useguider.com";
             AsyncStorage.setItem("lastFetch", new Date().toISOString());
             const newIndex = await (
                 await fetch(`${BASE_URL}/index.json`)
@@ -60,6 +60,7 @@ export default function RootLayout() {
                 const guide = await (
                     await fetch(`${BASE_URL}/${i.slug}.json`)
                 ).json();
+                console.log(guide);
                 await AsyncStorage.setItem(guide.slug, JSON.stringify(guide));
             }
         })();
