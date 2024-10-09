@@ -142,7 +142,7 @@ const ContributeForm = () => {
                                             e.nativeEvent.text
                                         );
                                     }}
-                                    value={steps[index].heading}
+                                    defaultValue={steps[index].heading}
                                 />
                                 <TextField
                                     textContentType="none"
@@ -163,7 +163,7 @@ const ContributeForm = () => {
                                             e.nativeEvent.text
                                         );
                                     }}
-                                    value={steps[index].description}
+                                    defaultValue={steps[index].description}
                                 />
                                 {steps.length > 1 && (
                                     <>

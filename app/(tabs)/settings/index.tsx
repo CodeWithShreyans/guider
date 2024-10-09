@@ -1,12 +1,6 @@
 import { Icon, MaterialIconName } from "@roninoss/icons";
 import { router } from "expo-router";
 import { PressableProps, View } from "react-native";
-
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "~/components/nativewindui/Avatar";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import {
     ESTIMATED_ITEM_HEIGHT,

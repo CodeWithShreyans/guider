@@ -10,18 +10,18 @@ import { GuidesView } from "~/components/guides";
 import { SearchInput } from "~/components/nativewindui/SearchInput";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 
-export type SearchResults = {
+export type SearchResult = {
     title: string;
     slug: string;
     image: string;
     score: number;
-}[];
+};
 
 const rankSearch = (
     text: string,
-    setSearchResults: React.Dispatch<React.SetStateAction<SearchResults>>
+    setSearchResults: React.Dispatch<React.SetStateAction<SearchResult[]>>
 ) => {
-    const searchResults: SearchResults = [];
+    const searchResults: SearchResult[] = [];
     guideIndex.forEach((v) => {
         const score = stringSimilarity(text, v.title);
         if (score > 0.2) {
@@ -37,7 +37,7 @@ export default function HomeScreen() {
     const insets = useSafeAreaInsets();
 
     const [searchValue, setSearchValue] = useState("");
-    const [searchResults, setSearchResults] = useState<SearchResults>([]);
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
     return (
         <>
@@ -55,7 +55,7 @@ export default function HomeScreen() {
             >
                 <View className="w-full px-2">
                     <SearchInput
-                        value={searchValue}
+                        defaultValue={searchValue}
                         onChangeText={(text) => {
                             setSearchValue(text);
                             rankSearch(text, setSearchResults);
