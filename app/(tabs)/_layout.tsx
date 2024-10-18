@@ -1,6 +1,6 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Icon, IconProps } from "@roninoss/icons";
-import { Stack, Tabs } from "expo-router";
+import { Stack } from "expo-router";
 import * as React from "react";
 import {
     Platform,
@@ -20,6 +20,13 @@ import { Text } from "~/components/nativewindui/Text";
 import { Badge } from "~/components/nativewindui/Badge";
 import { cn } from "~/lib/cn";
 import { useColorScheme } from "~/lib/useColorScheme";
+import { withLayoutContext } from "expo-router";
+import {
+    createNativeBottomTabNavigator,
+    NativeBottomTabNavigationOptions,
+} from "react-native-bottom-tabs/react-navigation";
+
+const Tabs = withLayoutContext(createNativeBottomTabNavigator().Navigator);
 
 export default function TabLayout() {
     const { colors } = useColorScheme();
@@ -29,6 +36,7 @@ export default function TabLayout() {
             <Tabs
                 tabBar={TAB_BAR}
                 screenOptions={{
+                    // @ts-ignore
                     headerShown: false,
                     tabBarActiveTintColor: colors.primary,
                 }}
@@ -37,7 +45,7 @@ export default function TabLayout() {
                     name="index"
                     options={{
                         title: "Home",
-                        tabBarIcon(props) {
+                        tabBarIcon(props: { focused: boolean }) {
                             return !props.focused ? (
                                 <Icon
                                     name="home-outline"
@@ -54,7 +62,7 @@ export default function TabLayout() {
                     name="add/index"
                     options={{
                         title: "Add",
-                        tabBarIcon(props) {
+                        tabBarIcon(props: { focused: boolean }) {
                             return !props.focused ? (
                                 <Icon
                                     name="plus-box-outline"
@@ -71,7 +79,7 @@ export default function TabLayout() {
                     name="settings/index"
                     options={{
                         title: "Settings",
-                        tabBarIcon(props) {
+                        tabBarIcon(props: { focused: boolean }) {
                             return !props.focused ? (
                                 <Icon name="cog-outline" {...props} size={27} />
                             ) : (
