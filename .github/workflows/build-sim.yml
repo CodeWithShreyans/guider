@@ -27,6 +27,7 @@ jobs:
                   eas-version: latest
                   packager: bun
                   token: ${{ secrets.EXPO_TOKEN }}
+                  patch-watchers: false
 
             - name: 📦 Install dependencies
               run: bun install
