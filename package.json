@@ -10,7 +10,6 @@
         "lint": "expo lint"
     },
     "dependencies": {
-        "@expo/vector-icons": "^14.0.4",
         "@gorhom/bottom-sheet": "^5.0.2",
         "@react-native-async-storage/async-storage": "2.0.0",
         "@react-native-community/datetimepicker": "8.2.0",
@@ -58,7 +57,6 @@
         "react-native-screens": "~3.34.0",
         "react-native-svg": "15.8.0",
         "react-native-uitextview": "^1.4.0",
-        "react-native-vector-icons": "^10.2.0",
         "react-native-webview": "13.12.3",
         "react-native-youtube-iframe": "^2.3.0",
         "resend": "^4.0.0",
