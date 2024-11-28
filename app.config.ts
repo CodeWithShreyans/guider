@@ -24,9 +24,12 @@ const config = (): ExpoConfig => ({
             "aps-environment": "development",
         },
         icon: {
-            any: "./assets/images/icons/light.png",
+            light: "./assets/images/icons/light.png",
             dark: "./assets/images/icons/dark.png",
             tinted: "./assets/images/icons/tinted.png",
+        },
+        config: {
+            usesNonExemptEncryption: false,
         },
     },
     android: {
