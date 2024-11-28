@@ -1,5 +1,5 @@
 import { ExpoConfig } from "expo/config";
-import { PluginConfigType } from "expo-build-properties/src/pluginConfig";
+import type { PluginConfigType } from "expo-build-properties/src/pluginConfig";
 
 const config = (): ExpoConfig => ({
     name: "Guider",
@@ -13,10 +13,6 @@ const config = (): ExpoConfig => ({
     scheme: "guider",
     userInterfaceStyle: "automatic",
     platforms: ["ios", "android"],
-    splash: {
-        image: "./assets/images/icons/tinted.png",
-        backgroundColor: "#000000",
-    },
     ios: {
         supportsTablet: true,
         bundleIdentifier: "sh.shreyans.guider",
@@ -49,6 +45,16 @@ const config = (): ExpoConfig => ({
                     minSdkVersion: 28,
                 },
             } as PluginConfigType,
+        ],
+        [
+            "expo-splash-screen",
+            {
+                image: "./assets/images/icons/light.png",
+                dark: {
+                    backgroundColor: "#000000",
+                    image: "./assets/images/icons/dark.png",
+                },
+            },
         ],
     ],
     experiments: {
