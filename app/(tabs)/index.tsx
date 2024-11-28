@@ -43,7 +43,7 @@ export default function HomeScreen() {
         <>
             <LargeTitleHeader
                 title="Home"
-                searchBar={{ iosHideWhenScrolling: true }}
+                // searchBar={{ iosHideWhenScrolling: true }}
             />
             <SafeAreaView
                 style={{

@@ -38,10 +38,13 @@ const config = (): ExpoConfig => ({
     plugins: [
         "expo-router",
         "react-native-edge-to-edge",
+        "react-native-bottom-tabs",
         [
             "expo-build-properties",
             {
-                ios: {},
+                ios: {
+                    useFrameworks: "static",
+                },
                 android: {
                     minSdkVersion: 28,
                 },

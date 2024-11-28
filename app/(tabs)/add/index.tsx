@@ -20,7 +20,7 @@ export default function SettingsIosStyleScreen() {
         <>
             <LargeTitleHeader
                 title="Add"
-                searchBar={{ iosHideWhenScrolling: true }}
+                // searchBar={{ iosHideWhenScrolling: true }}
             />
             <List
                 contentContainerClassName="pt-4"

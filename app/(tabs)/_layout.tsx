@@ -1,6 +1,6 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Icon, IconProps } from "@roninoss/icons";
-import { Stack, Tabs } from "expo-router";
+import { Stack } from "expo-router";
 import * as React from "react";
 import {
     Platform,
@@ -20,6 +20,12 @@ import { Text } from "~/components/nativewindui/Text";
 import { Badge } from "~/components/nativewindui/Badge";
 import { cn } from "~/lib/cn";
 import { useColorScheme } from "~/lib/useColorScheme";
+import { withLayoutContext } from "expo-router";
+import { createNativeBottomTabNavigator } from "@bottom-tabs/react-navigation";
+
+export const Tabs = withLayoutContext(
+    createNativeBottomTabNavigator().Navigator
+);
 
 export default function TabLayout() {
     const { colors } = useColorScheme();
@@ -27,26 +33,29 @@ export default function TabLayout() {
         <>
             <Stack.Screen options={{ title: "Tabs" }} />
             <Tabs
-                tabBar={TAB_BAR}
-                screenOptions={{
-                    headerShown: false,
-                    tabBarActiveTintColor: colors.primary,
-                }}
+                tabBarActiveTintColor={colors.primary}
+                tabBarInactiveTintColor={colors.grey}
+                translucent={true}
+                hapticFeedbackEnabled={true}
             >
                 <Tabs.Screen
                     name="index"
                     options={{
                         title: "Home",
-                        tabBarIcon(props) {
-                            return !props.focused ? (
-                                <Icon
-                                    name="home-outline"
-                                    {...props}
-                                    size={27}
-                                />
-                            ) : (
-                                <Icon name="home" {...props} size={27} />
-                            );
+                        // tabBarIcon(props) {
+                        //     return !props.focused ? (
+                        //         <Icon
+                        //             name="home-outline"
+                        //             {...props}
+                        //             size={27}
+                        //         />
+                        //     ) : (
+                        //         <Icon name="home" {...props} size={27} />
+                        //     );
+                        // },
+
+                        tabBarIcon() {
+                            return <Icon name="home-outline" size={27} />;
                         },
                     }}
                 />
@@ -54,16 +63,20 @@ export default function TabLayout() {
                     name="add/index"
                     options={{
                         title: "Add",
-                        tabBarIcon(props) {
-                            return !props.focused ? (
-                                <Icon
-                                    name="plus-box-outline"
-                                    {...props}
-                                    size={27}
-                                />
-                            ) : (
-                                <Icon name="plus-box" {...props} size={27} />
-                            );
+                        // tabBarIcon(props) {
+                        //     return !props.focused ? (
+                        //         <Icon
+                        //             name="plus-box-outline"
+                        //             {...props}
+                        //             size={27}
+                        //         />
+                        //     ) : (
+                        //         <Icon name="plus-box" {...props} size={27} />
+                        //     );
+                        // },
+
+                        tabBarIcon() {
+                            return <Icon name="plus-box-outline" size={27} />;
                         },
                     }}
                 />
@@ -71,12 +84,16 @@ export default function TabLayout() {
                     name="settings/index"
                     options={{
                         title: "Settings",
-                        tabBarIcon(props) {
-                            return !props.focused ? (
-                                <Icon name="cog-outline" {...props} size={27} />
-                            ) : (
-                                <Icon name="cog" {...props} size={27} />
-                            );
+                        // tabBarIcon(props) {
+                        //     return !props.focused ? (
+                        //         <Icon name="cog-outline" {...props} size={27} />
+                        //     ) : (
+                        //         <Icon name="cog" {...props} size={27} />
+                        //     );
+                        // },
+
+                        tabBarIcon() {
+                            return <Icon name="cog-outline" size={27} />;
                         },
                     }}
                 />
@@ -84,11 +101,6 @@ export default function TabLayout() {
         </>
     );
 }
-
-const TAB_BAR = Platform.select({
-    ios: undefined,
-    android: (props: BottomTabBarProps) => <MaterialTabBar {...props} />,
-});
 
 const TAB_ICON = {
     index: "newspaper",
@@ -141,7 +153,7 @@ function MaterialTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
                         accessibilityRole="button"
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
-                        testID={options.tabBarTestID}
+                        testID={options.tabBarButtonTestID}
                         onPress={onPress}
                         onLongPress={onLongPress}
                         name={TAB_ICON[route.name as keyof typeof TAB_ICON]}

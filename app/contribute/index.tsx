@@ -23,10 +23,6 @@ const ContributeForm = () => {
         { heading: "", description: "" },
     ]);
 
-    React.useEffect(() => {
-        console.log(steps);
-    }, [steps]);
-
     const onChange = () => {
         if (!canSave) {
             setCanSave(true);
@@ -52,7 +48,6 @@ const ContributeForm = () => {
     };
 
     const onSubmit = async () => {
-        console.log("submit", steps);
         if (
             !mainTitle ||
             steps.some((step) => !step.heading || !step.description)

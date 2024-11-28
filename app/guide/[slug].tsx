@@ -48,10 +48,6 @@ const GuidePage = () => {
         });
     }, [slug]);
 
-    useEffect(() => {
-        console.log(playerLoading);
-    }, [playerLoading]);
-
     return (
         <ScrollView
             style={{
@@ -78,7 +74,6 @@ const GuidePage = () => {
                         mute={true}
                         volume={100}
                         onChangeState={(e) => {
-                            console.log(e);
                             if (e !== PLAYER_STATES.UNSTARTED) {
                                 setPlayerLoading(false);
                             } else {
