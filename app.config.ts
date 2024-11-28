@@ -41,11 +41,8 @@ const config = (): ExpoConfig => ({
         [
             "expo-build-properties",
             {
-                ios: {
-                    newArchEnabled: true,
-                },
+                ios: {},
                 android: {
-                    newArchEnabled: true,
                     minSdkVersion: 28,
                 },
             } as PluginConfigType,
