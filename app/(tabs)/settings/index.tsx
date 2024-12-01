@@ -30,6 +30,7 @@ export default function SettingsIosStyleScreen() {
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 sectionHeaderAsGap
+                rootClassName="bg-background"
             />
         </>
     );
@@ -124,14 +125,12 @@ type MockData =
     | string;
 
 const DATA: MockData[] = [
-    "gap 1",
     // {
     //     id: "1",
     //     title: "Donate",
     //     leftView: <IconView name="heart-outline" className="bg-red-500" />,
     //     onPress: () => router.push("/donate"),
     // },
-    // "gap 2",
     {
         id: "1",
         title: "About",

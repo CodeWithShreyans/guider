@@ -54,9 +54,9 @@ export default function TabLayout() {
                         //     );
                         // },
 
-                        tabBarIcon() {
-                            return <Icon name="home-outline" size={27} />;
-                        },
+                        tabBarIcon: () => ({
+                            sfSymbol: "house",
+                        }),
                     }}
                 />
                 <Tabs.Screen
@@ -75,9 +75,9 @@ export default function TabLayout() {
                         //     );
                         // },
 
-                        tabBarIcon() {
-                            return <Icon name="plus-box-outline" size={27} />;
-                        },
+                        tabBarIcon: () => ({
+                            sfSymbol: "plus.app",
+                        }),
                     }}
                 />
                 <Tabs.Screen
@@ -92,9 +92,9 @@ export default function TabLayout() {
                         //     );
                         // },
 
-                        tabBarIcon() {
-                            return <Icon name="cog-outline" size={27} />;
-                        },
+                        tabBarIcon: () => ({
+                            sfSymbol: "gear",
+                        }),
                     }}
                 />
             </Tabs>

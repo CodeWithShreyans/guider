@@ -50,8 +50,8 @@ export default function HomeScreen() {
                     flex: 1,
                     flexDirection: "column",
                     alignItems: "flex-start",
-                    paddingTop: insets.top - 16,
                 }}
+                className="bg-background"
             >
                 <View className="w-full px-2">
                     <SearchInput

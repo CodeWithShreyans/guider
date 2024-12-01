@@ -2,6 +2,7 @@ import { Icon, MaterialIconName } from "@roninoss/icons";
 import { router } from "expo-router";
 import { PressableProps, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Button } from "~/components/nativewindui/Button";
 import { LargeTitleHeader } from "~/components/nativewindui/LargeTitleHeader";
 import {
     ESTIMATED_ITEM_HEIGHT,
@@ -18,10 +19,10 @@ import { useColorScheme } from "~/lib/useColorScheme";
 export default function SettingsIosStyleScreen() {
     return (
         <>
-            <LargeTitleHeader
+            {/* <LargeTitleHeader
                 title="Add"
                 // searchBar={{ iosHideWhenScrolling: true }}
-            />
+            /> */}
             <List
                 contentContainerClassName="pt-4"
                 contentInsetAdjustmentBehavior="automatic"
@@ -31,6 +32,7 @@ export default function SettingsIosStyleScreen() {
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 sectionHeaderAsGap
+                rootClassName="bg-background"
             />
         </>
     );
@@ -125,14 +127,6 @@ type MockData =
     | string;
 
 const DATA: MockData[] = [
-    "gap 1",
-    // {
-    //     id: "1",
-    //     title: "Donate",
-    //     leftView: <IconView name="heart-outline" className="bg-red-500" />,
-    //     onPress: () => router.push("/donate"),
-    // },
-    // "gap 2",
     {
         id: "1",
         title: "Request",
@@ -141,7 +135,6 @@ const DATA: MockData[] = [
         ),
         onPress: () => router.push("/request"),
     },
-    "gap 2",
     {
         id: "2",
         title: "Contribute",

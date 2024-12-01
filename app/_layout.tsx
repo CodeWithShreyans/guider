@@ -19,17 +19,26 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import deepEqual from "deep-equal";
 import { PortalHost } from "@rn-primitives/portal";
 import { KeyboardProvider } from "react-native-keyboard-controller";
+import {
+    BottomSheetModalProvider,
+    BottomSheetView,
+} from "@gorhom/bottom-sheet";
 
-export {
-    // Catch any errors thrown by the Layout component.
-    ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
 export default function RootLayout() {
     useInitialAndroidBarSync();
     const { colorScheme, isDarkColorScheme } = useColorScheme();
 
+    // const bottomSheetModalRef = useSheetRef();
+
     useEffect(() => {
+        // AsyncStorage.getItem("firstLaunch").then((v) => {
+        //     if (v == null) {
+        //         bottomSheetModalRef.current?.present();
+        //     }
+        // });
+
         registerBackgroundFetchAsync();
 
         (async () => {
@@ -61,29 +70,47 @@ export default function RootLayout() {
                 key={`root-status-bar-${isDarkColorScheme ? "light" : "dark"}`}
                 style={isDarkColorScheme ? "light" : "dark"}
             />
-            <GestureHandlerRootView>
-                <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
-                    <ThemeProvider value={NAV_THEME[colorScheme]}>
-                        <Stack
-                            screenOptions={{
-                                headerBackButtonDisplayMode: "minimal",
-                            }}
-                        >
-                            <Stack.Screen
-                                name="(tabs)"
-                                options={{ headerShown: false }}
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <BottomSheetModalProvider>
+                    <KeyboardProvider
+                        statusBarTranslucent
+                        navigationBarTranslucent
+                    >
+                        <ThemeProvider value={NAV_THEME[colorScheme]}>
+                            <Stack
+                                screenOptions={{
+                                    headerBackButtonDisplayMode: "minimal",
+                                }}
+                            >
+                                <Stack.Screen
+                                    name="(tabs)"
+                                    options={{ headerShown: false }}
+                                />
+                                <Stack.Screen name="+not-found" />
+                            </Stack>
+                            {/* <Sheet
+                                ref={bottomSheetModalRef}
+                                snapPoints={["75%"]}
+                            >
+                                <BottomSheetView className="flex p-4">
+                                    <Text
+                                        variant="largeTitle"
+                                        className="tracking-wider font-semibold"
+                                    >
+                                        Welcome to Guider!
+                                    </Text>
+                                </BottomSheetView>
+                            </Sheet> */}
+                            <Toaster
+                                theme={colorScheme}
+                                position="bottom-center"
+                                swipeToDismissDirection="left"
+                                richColors={true}
                             />
-                            <Stack.Screen name="+not-found" />
-                        </Stack>
-                        <Toaster
-                            theme={colorScheme}
-                            position="bottom-center"
-                            swipeToDismissDirection="left"
-                            richColors={true}
-                        />
-                        <PortalHost />
-                    </ThemeProvider>
-                </KeyboardProvider>
+                            <PortalHost />
+                        </ThemeProvider>
+                    </KeyboardProvider>
+                </BottomSheetModalProvider>
             </GestureHandlerRootView>
         </SafeAreaProvider>
     );
