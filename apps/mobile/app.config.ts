@@ -1,10 +1,10 @@
-import { ExpoConfig } from "expo/config";
+import type { ExpoConfig } from "expo/config";
 import type { PluginConfigType } from "expo-build-properties/src/pluginConfig";
 
 const config = (): ExpoConfig => ({
     name: "Guider",
     slug: "guider",
-    version: "0.0.1",
+    version: "1.0.0",
     description: "Offline Access to Emergency Guides",
     owner: "codewithshreyans",
     githubUrl: "https://github.com/CodeWithShreyans/guider",
