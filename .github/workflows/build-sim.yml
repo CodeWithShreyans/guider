@@ -36,4 +36,4 @@ jobs:
             - name: ⬆️ Upload IPA
               uses: actions/upload-artifact@v4
               with:
-                  path: ${{ github.workspace }}/apps/mobile/build.ipa
+                  path: ${{ github.workspace }}/build.ipa
