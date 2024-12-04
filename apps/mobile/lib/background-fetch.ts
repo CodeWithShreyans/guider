@@ -9,9 +9,9 @@ const BACKGROUND_FETCH_TASK = "fetch-new-guides";
 // Note: This needs to be called in the global scope (e.g outside of your React components)
 TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
     try {
-        const BASE_URL = "https://content.useguider.com";
+        const baseUrl = "https://content.useguider.com";
         AsyncStorage.setItem("lastFetch", new Date().toISOString());
-        const newIndex = await (await fetch(`${BASE_URL}/index.json`)).json();
+        const newIndex = await (await fetch(`${baseUrl}/index.json`)).json();
         const storedIndex = await AsyncStorage.getItem("guideIndex");
 
         if (storedIndex && deepEqual(newIndex, JSON.parse(storedIndex))) {
@@ -22,7 +22,7 @@ TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
 
         for (const i of newIndex) {
             const guide = await (
-                await fetch(`${BASE_URL}/${i.slug}.json`)
+                await fetch(`${baseUrl}/${i.slug}.json`)
             ).json();
             await AsyncStorage.setItem(guide.slug, JSON.stringify(guide));
         }
