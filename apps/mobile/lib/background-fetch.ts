@@ -1,7 +1,7 @@
-import * as BackgroundFetch from "expo-background-fetch";
-import * as TaskManager from "expo-task-manager";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import deepEqual from "deep-equal";
+import * as BackgroundFetch from "expo-background-fetch";
+import * as TaskManager from "expo-task-manager";
 
 const BACKGROUND_FETCH_TASK = "fetch-new-guides";
 

@@ -1,5 +1,5 @@
-import type { ExpoConfig } from "expo/config";
 import type { PluginConfigType } from "expo-build-properties/src/pluginConfig";
+import type { ExpoConfig } from "expo/config";
 
 const config = (): ExpoConfig => ({
     name: "Guider",
@@ -52,7 +52,7 @@ const config = (): ExpoConfig => ({
                 image: "./assets/images/icons/light.png",
                 dark: {
                     backgroundColor: "#000000",
-                    image: "./assets/images/icons/dark.png",
+                    image: "./assets/images/icons/tinted.png",
                 },
             },
         ],

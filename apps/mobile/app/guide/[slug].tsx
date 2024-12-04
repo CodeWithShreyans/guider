@@ -1,52 +1,53 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Text } from "~/components/nativewindui/Text";
-import { Stack, useLocalSearchParams } from "expo-router";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
-import { FlatList, ScrollView, useWindowDimensions, View } from "react-native";
-import { getNetworkStateAsync } from "expo-network";
-import YoutubePlayer, { PLAYER_STATES } from "react-native-youtube-iframe";
-import { Icon } from "@roninoss/icons";
-import { COLORS } from "~/theme/colors";
-import { useColorScheme } from "~/lib/useColorScheme";
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { Icon } from "@roninoss/icons"
+import { getNetworkStateAsync } from "expo-network"
+import { Stack, useLocalSearchParams } from "expo-router"
+import { useEffect, useState } from "react"
+import { FlatList, ScrollView, View, useWindowDimensions } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
+import YoutubePlayer, { PLAYER_STATES } from "react-native-youtube-iframe"
+import { Text } from "~/components/nativewindui/Text"
+import { useColorScheme } from "~/lib/useColorScheme"
+import { COLORS } from "~/theme/colors"
 
 type Guide = {
-    title: string;
-    slug: string;
-    image: string;
-    youtubeVideoId: string;
+    title: string
+    slug: string
+    image?: string
+    youtubeVideoId?: string
+    medicalDisclaimer?: boolean
     steps: {
-        title: string;
-        description: string;
-        imageUrl: string;
-    }[];
-};
+        title: string
+        description: string
+        imageUrl: string
+    }[]
+}
 
 const GuidePage = () => {
-    const { slug } = useLocalSearchParams();
-    const insets = useSafeAreaInsets();
-    const [guide, setGuide] = useState<Guide | null>(null);
-    const [showPlayer, setShowPlayer] = useState(false);
-    const [playerLoading, setPlayerLoading] = useState(true);
+    const { slug } = useLocalSearchParams()
+    const insets = useSafeAreaInsets()
+    const [guide, setGuide] = useState<Guide | null>(null)
+    const [showPlayer, setShowPlayer] = useState(false)
+    const [playerLoading, setPlayerLoading] = useState(true)
 
-    const { width } = useWindowDimensions();
+    const { width } = useWindowDimensions()
 
-    const { colorScheme } = useColorScheme();
+    const { colorScheme } = useColorScheme()
 
     useEffect(() => {
         AsyncStorage.getItem(slug as string).then((guide) => {
-            if (!guide) throw new Error("Guide not found");
-            const guideJson = JSON.parse(guide);
-            setGuide(guideJson);
-            (async () => {
+            if (!guide) throw new Error("Guide not found")
+            const guideJson = JSON.parse(guide)
+            setGuide(guideJson)
+            ;(async () => {
                 setShowPlayer(
-                    (await getNetworkStateAsync()).isInternetReachable! &&
-                        !!guideJson?.youtubeVideoId
-                );
-            })();
-        });
-    }, [slug]);
+                    ((await getNetworkStateAsync()).isInternetReachable ??
+                        false) &&
+                        !!guideJson?.youtubeVideoId,
+                )
+            })()
+        })
+    }, [slug])
 
     return (
         <ScrollView
@@ -61,6 +62,17 @@ const GuidePage = () => {
             <Text variant="largeTitle" className="font-semibold mb-4">
                 {guide?.title}
             </Text>
+            {guide?.medicalDisclaimer ? (
+                <Text
+                    variant="callout"
+                    className="mb-4 bg-destructive text-destructive-foreground p-2 rounded-xl overflow-hidden text-lg"
+                >
+                    DISCLAIMER: The information provided is for informational
+                    purposes only. It is not intended to be a substitute for
+                    professional medical advice, diagnosis or treatment. Always
+                    seek the advice of a qualified health care provider.
+                </Text>
+            ) : null}
             {showPlayer ? (
                 <View className={"rounded-xl overflow-hidden mb-4"}>
                     <YoutubePlayer
@@ -75,9 +87,9 @@ const GuidePage = () => {
                         volume={100}
                         onChangeState={(e) => {
                             if (e !== PLAYER_STATES.UNSTARTED) {
-                                setPlayerLoading(false);
+                                setPlayerLoading(false)
                             } else {
-                                setPlayerLoading(true);
+                                setPlayerLoading(true)
                             }
                         }}
                     />
@@ -133,7 +145,7 @@ const GuidePage = () => {
                 )}
             />
         </ScrollView>
-    );
-};
+    )
+}
 
-export default GuidePage;
+export default GuidePage
