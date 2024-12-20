@@ -1,5 +1,5 @@
 {
-    "name": "guider-mono",
+    "name": "guider",
     "private": true,
     "scripts": {
         "build": "turbo build",
