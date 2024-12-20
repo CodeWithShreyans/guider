@@ -34,6 +34,7 @@ export default function RootLayout() {
         // });
 
         registerBackgroundFetchAsync()
+
         ;(async () => {
             const baseUrl = "https://content.useguider.com"
             AsyncStorage.setItem("lastFetch", new Date().toISOString())
@@ -45,6 +46,8 @@ export default function RootLayout() {
             }
 
             await AsyncStorage.setItem("guideIndex", JSON.stringify(newIndex))
+
+            console.log(newIndex)
 
             for (const i of newIndex) {
                 const guide = await (

@@ -9,6 +9,7 @@
         "title": "How To Perform CPR on a Baby",
         "slug": "cpr-baby",
         "image": "",
-        "updated": "2024-12-04"
+        "updated": "2024-12-04",
+        "hidden": true
     }
 ]

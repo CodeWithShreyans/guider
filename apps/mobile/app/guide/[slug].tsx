@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { Icon } from "@roninoss/icons"
 import { getNetworkStateAsync } from "expo-network"
 import { Stack, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
@@ -7,8 +6,8 @@ import { FlatList, ScrollView, View, useWindowDimensions } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import YoutubePlayer, { PLAYER_STATES } from "react-native-youtube-iframe"
 import { Text } from "~/components/nativewindui/Text"
+import { Skeleton } from "~/components/skeleton"
 import { useColorScheme } from "~/lib/useColorScheme"
-import { COLORS } from "~/theme/colors"
 
 type Guide = {
     title: string
@@ -32,7 +31,7 @@ const GuidePage = () => {
 
     const { width } = useWindowDimensions()
 
-    const { colorScheme } = useColorScheme()
+    const { isDarkColorScheme } = useColorScheme()
 
     useEffect(() => {
         AsyncStorage.getItem(slug as string).then((guide) => {
@@ -94,27 +93,33 @@ const GuidePage = () => {
                         }}
                     />
                     {playerLoading ? (
-                        <View
+                        // <View
+                        //     style={{
+                        //         height: ((width - insets.right - 32) / 16) * 9,
+                        //     }}
+                        //     className="items-center justify-center"
+                        // >
+                        //     <Icon
+                        //         name="arrow-up"
+                        //         ios={{
+                        //             name: "arrow.triangle.2.circlepath",
+                        //             symbolEffect: {
+                        //                 type: "pulse",
+                        //                 animateBy: "layer",
+                        //                 speed: 1,
+                        //                 isActive: true,
+                        //             },
+                        //         }}
+                        //         size={40}
+                        //         color={COLORS[colorScheme].foreground}
+                        //     />
+                        // </View>
+                        <Skeleton
+                            dark={isDarkColorScheme}
                             style={{
                                 height: ((width - insets.right - 32) / 16) * 9,
                             }}
-                            className="items-center justify-center"
-                        >
-                            <Icon
-                                name="arrow-up"
-                                ios={{
-                                    name: "arrow.triangle.2.circlepath",
-                                    symbolEffect: {
-                                        type: "pulse",
-                                        animateBy: "layer",
-                                        speed: 1,
-                                        isActive: true,
-                                    },
-                                }}
-                                size={40}
-                                color={COLORS[colorScheme].foreground}
-                            />
-                        </View>
+                        />
                     ) : null}
                 </View>
             ) : null}
