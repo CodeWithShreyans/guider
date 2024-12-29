@@ -11,7 +11,6 @@ const GuidesView = ({
     searchResults: SearchResult[]
     guideIndex: typeof GuideIndex
 }) => {
-    console.log(guideIndex)
     return (
         <View className="h-full w-screen">
             <List

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { stringSimilarity } from "string-similarity-js"
@@ -24,12 +24,14 @@ const rankSearch = async (
     const searchResults: SearchResult[] = []
     for (const v of guideIndex) {
         const score = stringSimilarity(text, v.title)
+        console.log(score)
         if (score > 0.2 && !v.hidden) {
             searchResults.push({ ...v, hidden: !!v.hidden, score: score })
         }
     }
     searchResults.sort((a, b) => b.score - a.score)
 
+    console.log(searchResults)
     setSearchResults(searchResults)
 }
 
@@ -38,11 +40,14 @@ export default function HomeScreen() {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([])
     const [guideIndex, setGuideIndex] = useState<typeof GuideIndex>([])
 
-    AsyncStorage.getItem("guideIndex").then((value) => {
-        if (value) {
-            setGuideIndex(JSON.parse(value))
-        }
-    })
+    useEffect(() => {
+        AsyncStorage.getItem("guideIndex").then((value) => {
+            if (value) {
+                setGuideIndex(JSON.parse(value))
+                console.log(value)
+            }
+        })
+    }, [])
 
     return (
         <>
